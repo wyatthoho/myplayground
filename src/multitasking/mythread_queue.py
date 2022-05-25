@@ -23,20 +23,26 @@ class Cook(threading.Thread):
             print(msg)
 
 
-orders = [{'idx': 1, 'meal': 8},
-          {'idx': 2, 'meal': 2},
-          {'idx': 3, 'meal': 5}]
+if __name__ == '__main__':
+    timeStr = time.time()
 
-my_queue = queue.Queue()
-for order in orders:
-    my_queue.put(order)
+    orders = [{'idx': 1, 'meal': 8},
+              {'idx': 2, 'meal': 2},
+              {'idx': 3, 'meal': 5}]
 
-cook1 = Cook(cookIdx=1, queue=my_queue)
-cook2 = Cook(cookIdx=2, queue=my_queue)
+    my_queue = queue.Queue()
+    for order in orders:
+        my_queue.put(order)
 
-cook1.start()
-cook2.start()
+    cook1 = Cook(cookIdx=1, queue=my_queue)
+    cook2 = Cook(cookIdx=2, queue=my_queue)
 
-cook1.join()
-cook2.join()
+    cook1.start()
+    cook2.start()
+
+    cook1.join()
+    cook2.join()
+
+    timeEnd = time.time()
+    print('Total time: {:.3f}s'.format(timeEnd - timeStr))
 

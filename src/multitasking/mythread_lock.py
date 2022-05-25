@@ -50,23 +50,28 @@ class Cook(threading.Thread):
             print(f'Lock state after Cook {self.cookIdx} release: {self.lock.locked()}')
 
 
-orders = [{'idx': 1, 'meal': 8},
-          {'idx': 2, 'meal': 2},
-          {'idx': 3, 'meal': 5}]
+if __name__ == '__main__':
+    timeStr = time.time()
 
+    orders = [{'idx': 1, 'meal': 8},
+              {'idx': 2, 'meal': 2},
+              {'idx': 3, 'meal': 5}]
 
-my_queue = queue.Queue()
-for order in orders:
-    my_queue.put(order)
+    my_queue = queue.Queue()
+    for order in orders:
+        my_queue.put(order)
 
-lock = threading.Lock()
+    lock = threading.Lock()
 
-cook1 = Cook(cookIdx=1, queue=my_queue, lock=lock)
-cook2 = Cook(cookIdx=2, queue=my_queue, lock=lock)
+    cook1 = Cook(cookIdx=1, queue=my_queue, lock=lock)
+    cook2 = Cook(cookIdx=2, queue=my_queue, lock=lock)
 
-cook1.start()
-cook2.start()
+    cook1.start()
+    cook2.start()
 
-cook1.join()
-cook2.join()
+    cook1.join()
+    cook2.join()
+
+    timeEnd = time.time()
+    print('Total time: {:.3f}s'.format(timeEnd - timeStr))
 

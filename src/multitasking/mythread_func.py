@@ -16,7 +16,6 @@ if __name__ == '__main__':
     timeStr = time.time()
 
     threads = [threading.Thread(target=job, args=(i,)) for i in range(3)]
-
     for thread in threads:
         thread.start()
 
@@ -25,3 +24,4 @@ if __name__ == '__main__':
 
     timeEnd = time.time()
     print('Total time: {:.3f}s'.format(timeEnd - timeStr))
+

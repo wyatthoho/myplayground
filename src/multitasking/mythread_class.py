@@ -17,11 +17,16 @@ class MyThread(threading.Thread):
         print(msg)
 
 
-threads = [MyThread(i) for i in range(3)]
+if __name__ == '__main__':
+    timeStr = time.time()
 
-for thread in threads:
-    thread.start()
+    threads = [MyThread(i) for i in range(3)]
+    for thread in threads:
+        thread.start()
 
-for thread in threads:
-    thread.join()
+    for thread in threads:
+        thread.join()
+    
+    timeEnd = time.time()
+    print('Total time: {:.3f}s'.format(timeEnd - timeStr))
 
