@@ -1,6 +1,7 @@
 import threading
 import time
 import queue
+from time import gmtime, strftime
 
 
 class Cook(threading.Thread):
@@ -11,28 +12,24 @@ class Cook(threading.Thread):
 
     def run(self):
         while not self.queue.empty():
-            order = self.queue.get()
-            orderIdx, meal = order.values()
-            cookTime = meal / 10
+            meals = self.queue.get()
 
-            msg = f'Order {orderIdx} is assigned to Cook {self.cookIdx}.'
+            msg = 'Cook {}: Start to cook. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
             print(msg)
 
+            cookTime = meals
             time.sleep(cookTime)
-            msg = f'Order {orderIdx} is done.'
+
+            msg = 'Cook {}: End of cooking. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
             print(msg)
 
 
 if __name__ == '__main__':
-    timeStr = time.time()
-
-    orders = [{'idx': 1, 'meal': 8},
-              {'idx': 2, 'meal': 2},
-              {'idx': 3, 'meal': 5}]
+    orders = [8, 2, 5]
 
     my_queue = queue.Queue()
-    for order in orders:
-        my_queue.put(order)
+    for meals in orders:
+        my_queue.put(meals)
 
     cook1 = Cook(cookIdx=1, queue=my_queue)
     cook2 = Cook(cookIdx=2, queue=my_queue)
@@ -42,7 +39,4 @@ if __name__ == '__main__':
 
     cook1.join()
     cook2.join()
-
-    timeEnd = time.time()
-    print('Total time: {:.3f}s'.format(timeEnd - timeStr))
 

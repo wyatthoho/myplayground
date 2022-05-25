@@ -3,30 +3,33 @@ import time
 from time import gmtime, strftime
 
 
-class MyThread(threading.Thread):
-    def __init__(self, idx):
+class Cook(threading.Thread):
+    def __init__(self, cookIdx, meals):
         threading.Thread.__init__(self)
-        self.idx = idx
+        self.cookIdx = cookIdx
+        self.meals = meals
 
     def run(self):
-        start = strftime('%H:%M:%S', gmtime())
-        time.sleep(2)
-        end = strftime('%H:%M:%S', gmtime())
+        msg = 'Cook {}: Start to cook. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+        print(msg)
 
-        msg = 'Thread: {}, start: {}, end: {}'.format(self.idx, start, end)
+        cookTime = self.meals
+        time.sleep(cookTime)
+
+        msg = 'Cook {}: End of cooking. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
         print(msg)
 
 
 if __name__ == '__main__':
-    timeStr = time.time()
+    cook1 = Cook(cookIdx=1, meals=8)
+    cook2 = Cook(cookIdx=2, meals=2)
+    cook3 = Cook(cookIdx=3, meals=5)
 
-    threads = [MyThread(i) for i in range(3)]
-    for thread in threads:
-        thread.start()
+    cook1.start()
+    cook2.start()
+    cook3.start()
 
-    for thread in threads:
-        thread.join()
-    
-    timeEnd = time.time()
-    print('Total time: {:.3f}s'.format(timeEnd - timeStr))
+    cook1.join()
+    cook2.join()
+    cook3.join()
 

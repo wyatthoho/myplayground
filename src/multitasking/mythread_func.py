@@ -3,25 +3,27 @@ import time
 from time import gmtime, strftime
 
 
-def job(idx):
-    start = strftime('%H:%M:%S', gmtime())
-    time.sleep(2)
-    end = strftime('%H:%M:%S', gmtime())
+def CookMeals(cookIdx, meals):
+    msg = 'Cook {}: Start to cook. ({})'.format(cookIdx, strftime('%H:%M:%S', gmtime()))
+    print(msg)
 
-    msg = 'Thread: {}, start: {}, end: {}'.format(idx, start, end)
+    cookTime = meals
+    time.sleep(cookTime)
+
+    msg = 'Cook {}: End of cooking. ({})'.format(cookIdx, strftime('%H:%M:%S', gmtime()))
     print(msg)
 
 
 if __name__ == '__main__':
-    timeStr = time.time()
+    cook1 = threading.Thread(target=CookMeals, args=(1,8))
+    cook2 = threading.Thread(target=CookMeals, args=(2,2))
+    cook3 = threading.Thread(target=CookMeals, args=(3,5))
 
-    threads = [threading.Thread(target=job, args=(i,)) for i in range(3)]
-    for thread in threads:
-        thread.start()
+    cook1.start()
+    cook2.start()
+    cook3.start()
 
-    for thread in threads:
-        thread.join()
-
-    timeEnd = time.time()
-    print('Total time: {:.3f}s'.format(timeEnd - timeStr))
+    cook1.join()
+    cook2.join()
+    cook3.join()
 

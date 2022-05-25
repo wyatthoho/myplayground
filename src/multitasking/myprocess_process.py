@@ -3,26 +3,29 @@ import time
 from time import gmtime, strftime
 
 
-def job(idx):
-    start = strftime('%H:%M:%S', gmtime())
-    time.sleep(2)
-    end = strftime('%H:%M:%S', gmtime())
+def CookMeals(cookIdx, meals):
+    msg = 'Cook {}: Start to cook. ({})'.format(cookIdx, strftime('%H:%M:%S', gmtime()))
+    print(msg)
 
-    msg = 'Thread: {}, start: {}, end: {}'.format(idx, start, end)
+    cookTime = meals
+    time.sleep(cookTime)
+
+    msg = 'Cook {}: End of cooking. ({})'.format(cookIdx, strftime('%H:%M:%S', gmtime()))
     print(msg)
 
 
 if __name__ == '__main__':
-    timeStr = time.time()
     multiprocessing.freeze_support()
 
-    processes = [multiprocessing.Process(target=job, args=(i,)) for i in range(3)]
+    cook1 = multiprocessing.Process(target=CookMeals, args=(1,8))
+    cook2 = multiprocessing.Process(target=CookMeals, args=(2,2))
+    cook3 = multiprocessing.Process(target=CookMeals, args=(3,5))
 
-    for process in processes:
-        process.start()
+    cook1.start()
+    cook2.start()
+    cook3.start()
 
-    for process in processes:
-        process.join()
+    cook1.join()
+    cook2.join()
+    cook3.join()
 
-    timeEnd = time.time()
-    print('Total time: {:.3f}s'.format(timeEnd - timeStr))
