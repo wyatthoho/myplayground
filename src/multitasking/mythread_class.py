@@ -9,9 +9,9 @@ class MyThread(threading.Thread):
         self.idx = idx
 
     def run(self):
-        start = strftime("%H:%M:%S", gmtime())
+        start = strftime('%H:%M:%S', gmtime())
         time.sleep(2)
-        end = strftime("%H:%M:%S", gmtime())
+        end = strftime('%H:%M:%S', gmtime())
 
         msg = 'Thread: {}, start: {}, end: {}'.format(self.idx, start, end)
         print(msg)

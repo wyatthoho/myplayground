@@ -1,4 +1,4 @@
-import threading
+import multiprocessing
 import time
 from time import gmtime, strftime
 
@@ -14,14 +14,15 @@ def job(idx):
 
 if __name__ == '__main__':
     timeStr = time.time()
+    multiprocessing.freeze_support()
 
-    threads = [threading.Thread(target=job, args=(i,)) for i in range(3)]
+    processes = [multiprocessing.Process(target=job, args=(i,)) for i in range(3)]
 
-    for thread in threads:
-        thread.start()
+    for process in processes:
+        process.start()
 
-    for thread in threads:
-        thread.join()
+    for process in processes:
+        process.join()
 
     timeEnd = time.time()
     print('Total time: {:.3f}s'.format(timeEnd - timeStr))
