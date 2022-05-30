@@ -19,12 +19,10 @@ class Cook(multiprocessing.Process):
             sendMeals = 1
             self.meals -= sendMeals
             self.conn1.send({'Cook': self.cookIdx, 'sendMeals': sendMeals})
-            self.conn1.close()
 
         elif self.conn2.poll():
             recvMeals = self.conn2.recv()['sendMeals']
             self.meals += recvMeals
-            self.conn2.close()
         
         cookTime = self.meals
         time.sleep(cookTime)
