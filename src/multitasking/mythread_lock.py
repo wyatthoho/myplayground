@@ -24,7 +24,7 @@ Queue.get(block=True, timeout=None)
 
 class Cook(threading.Thread):
     def __init__(self, cookIdx, queue, lock):
-        threading.Thread.__init__(self)
+        super().__init__()
         self.cookIdx = cookIdx
         self.queue = queue
         self.lock = lock

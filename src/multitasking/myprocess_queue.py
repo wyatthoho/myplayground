@@ -3,18 +3,24 @@ import time
 from time import gmtime, strftime
 
 
-def CookMeals(cookIdx, queue):
-    while not queue.empty():
-        meals = queue.get()
+class Cook(multiprocessing.Process):
+    def __init__(self, cookIdx, queue):
+        super().__init__()
+        self.cookIdx = cookIdx
+        self.queue = queue
 
-        msg = 'Cook {}: Start to cook. ({})'.format(cookIdx, strftime('%H:%M:%S', gmtime()))
-        print(msg)
+    def run(self):
+        while not self.queue.empty():
+            meals = self.queue.get()
 
-        cookTime = meals
-        time.sleep(cookTime)
+            msg = 'Cook {}: Start to cook. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+            print(msg)
 
-        msg = 'Cook {}: End of cooking. ({})'.format(cookIdx, strftime('%H:%M:%S', gmtime()))
-        print(msg)
+            cookTime = meals
+            time.sleep(cookTime)
+
+            msg = 'Cook {}: End of cooking. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+            print(msg)
 
 
 if __name__ == '__main__':
@@ -26,8 +32,8 @@ if __name__ == '__main__':
     for meals in orders:
         my_queue.put(meals)
 
-    cook1 = multiprocessing.Process(target=CookMeals, args=(1, my_queue))
-    cook2 = multiprocessing.Process(target=CookMeals, args=(2, my_queue))
+    cook1 = Cook(cookIdx=1, queue=my_queue)
+    cook2 = Cook(cookIdx=2, queue=my_queue)
 
     cook1.start()
     cook2.start()

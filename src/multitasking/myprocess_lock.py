@@ -1,18 +1,19 @@
-import threading
+import multiprocessing
 import time
-import queue
 from time import gmtime, strftime
 
 
-class Cook(threading.Thread):
-    def __init__(self, cookIdx, queue):
+class Cook(multiprocessing.Process):
+    def __init__(self, cookIdx, queue, lock):
         super().__init__()
         self.cookIdx = cookIdx
         self.queue = queue
+        self.lock = lock
 
     def run(self):
         while not self.queue.empty():
             meals = self.queue.get()
+            self.lock.acquire()
 
             msg = 'Cook {}: Start to cook. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
             print(msg)
@@ -22,17 +23,20 @@ class Cook(threading.Thread):
 
             msg = 'Cook {}: End of cooking. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
             print(msg)
+            self.lock.release()
 
 
 if __name__ == '__main__':
     orders = [8, 2, 5]
 
-    my_queue = queue.Queue()
+    my_queue = multiprocessing.Queue()
     for meals in orders:
         my_queue.put(meals)
 
-    cook1 = Cook(cookIdx=1, queue=my_queue)
-    cook2 = Cook(cookIdx=2, queue=my_queue)
+    lock = multiprocessing.Lock()
+
+    cook1 = Cook(cookIdx=1, queue=my_queue, lock=lock)
+    cook2 = Cook(cookIdx=2, queue=my_queue, lock=lock)
 
     cook1.start()
     cook2.start()
