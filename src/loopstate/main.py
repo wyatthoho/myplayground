@@ -1,10 +1,7 @@
 import time
 
 
-def PrintLoopState(tick, total, step=None):
-    if step == None:
-        step = max(int(total * 0.01), 1)
-
+def PrintLoopState(tick, total, step=1):
     cond1 = tick % step == 0
     cond2 = tick == total
     
@@ -25,7 +22,7 @@ def PrintLoopState(tick, total, step=None):
 
 
 if __name__ == '__main__':
-    for itr in range(80):
-        time.sleep(0.1)
-        PrintLoopState(tick=itr+1, total=80, step=3)
+    for itr in range(101):
+        time.sleep(0.05)
+        PrintLoopState(tick=itr+1, total=101, step=2)
     print('Done.')
