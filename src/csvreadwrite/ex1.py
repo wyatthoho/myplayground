@@ -4,18 +4,21 @@ import os
 thispath = os.path.abspath(__file__)
 thisdir = os.path.dirname(thispath)
 
-datafile = 'dataread.csv'
-datapath = os.path.join(thisdir, datafile)
+file_read = 'read.csv'
+file_write = 'write.csv'
+
+path_read = os.path.join(thisdir, file_read)
+path_write = os.path.join(thisdir, file_write)
 
 
 # Check has_header
-with open(datapath, 'r') as f:
+with open(path_read, 'r') as f:
     has_header = csv.Sniffer().has_header(f.read())
     print(has_header)
 
 
 # Read
-with open(datapath, 'r') as f:
+with open(path_read, 'r') as f:
     data = csv.reader(f, delimiter=',', skipinitialspace=True)
     for rowdata in data:
         print(rowdata)
@@ -24,7 +27,7 @@ with open(datapath, 'r') as f:
 
 
 # Dict reader
-with open(datapath, 'r') as f:
+with open(path_read, 'r') as f:
     data = csv.DictReader(f, delimiter=',', skipinitialspace=True)
     for rowdata in data:
         print(rowdata)
