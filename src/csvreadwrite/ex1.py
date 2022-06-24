@@ -17,7 +17,7 @@ with open(path_read, 'r') as f:
     print(has_header)
 
 
-# Read
+# reader
 with open(path_read, 'r') as f:
     data = csv.reader(f, delimiter=',', skipinitialspace=True)
     for rowdata in data:
@@ -26,7 +26,7 @@ with open(path_read, 'r') as f:
     print(data.line_num)
 
 
-# Dict reader
+# DictReader
 with open(path_read, 'r') as f:
     data = csv.DictReader(f, delimiter=',', skipinitialspace=True)
     for rowdata in data:
@@ -34,4 +34,28 @@ with open(path_read, 'r') as f:
 
     print(data.fieldnames)
     print(data.line_num)
+
+
+# writer
+with open(path_write, 'w') as f:
+    writer = csv.writer(f, delimiter=',')
+    writer.writerow(['Vanilla Cone', 200, 5, 33, 5])
+
+
+# DictWriter
+with open(path_write, 'w', newline='') as f:
+    fieldnames = ['Item', 'Calories(Cal)', 'Total Fat(g)', 'Total Carbs(g)', 'Protein(g)']
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+
+    writer.writeheader()
+    
+    writer.writerow({'Item': 'Vanilla Cone', 
+                      'Calories(Cal)': 200, 
+                      'Total Fat(g)': 5, 
+                      'Total Carbs(g)': 33, 
+                      'Protein(g)': 5})
+    
+    writer.writerow({'Item': 'Baked Apple Pie', 
+                      'Calories(Cal)': 230, 
+                      'Protein(g)': 2})
 
