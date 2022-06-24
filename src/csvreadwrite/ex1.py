@@ -4,10 +4,12 @@ import os
 thispath = os.path.abspath(__file__)
 thisdir = os.path.dirname(thispath)
 
-file_read = 'read.csv'
+file_read = 'read_header.csv'
+file_read_noheader = 'read_noheader.csv'
 file_write = 'write.csv'
 
 path_read = os.path.join(thisdir, file_read)
+path_read_noheader = os.path.join(thisdir, file_read_noheader)
 path_write = os.path.join(thisdir, file_write)
 
 
@@ -29,6 +31,17 @@ with open(path_read, 'r') as f:
 # DictReader
 with open(path_read, 'r') as f:
     data = csv.DictReader(f, delimiter=',', skipinitialspace=True)
+    for rowdata in data:
+        print(rowdata)
+
+    print(data.fieldnames)
+    print(data.line_num)
+
+
+# DictReader (csv with no header)
+with open(path_read_noheader, 'r') as f:
+    fieldnames = ['Item', 'Calories(Cal)', 'Total Fat(g)', 'Total Carbs(g)', 'Protein(g)']
+    data = csv.DictReader(f, delimiter=',', skipinitialspace=True, fieldnames=fieldnames)
     for rowdata in data:
         print(rowdata)
 
