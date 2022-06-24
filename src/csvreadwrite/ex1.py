@@ -37,9 +37,10 @@ with open(path_read, 'r') as f:
 
 
 # writer
-with open(path_write, 'w') as f:
+with open(path_write, 'w', newline='') as f:
     writer = csv.writer(f, delimiter=',')
     writer.writerow(['Vanilla Cone', 200, 5, 33, 5])
+    writer.writerow(['Baked Apple Pie', 230, None, None, 2])
 
 
 # DictWriter
