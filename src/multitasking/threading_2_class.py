@@ -1,6 +1,5 @@
 import threading
 import time
-from time import gmtime, strftime
 
 
 class Cook(threading.Thread):
@@ -10,13 +9,13 @@ class Cook(threading.Thread):
         self.meals = meals
 
     def run(self):
-        msg = 'Cook {}: Start to cook. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+        msg = 'Cook {}: Start to cook.'.format(self.cookIdx)
         print(msg)
 
         cookTime = self.meals
         time.sleep(cookTime)
 
-        msg = 'Cook {}: End of cooking. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+        msg = 'Cook {}: End of cooking. ({} meals)'.format(self.cookIdx, self.meals)
         print(msg)
 
 

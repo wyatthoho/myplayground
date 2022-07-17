@@ -1,6 +1,5 @@
 import multiprocessing
 import time
-from time import gmtime, strftime
 
 
 class Cook(multiprocessing.Process):
@@ -12,7 +11,7 @@ class Cook(multiprocessing.Process):
         self.conn2 = conn2
 
     def run(self):
-        msg = 'Cook {}: Start to cook. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+        msg = 'Cook {}: Start to cook.'.format(self.cookIdx)
         print(msg)
 
         if self.meals > 6:
@@ -27,7 +26,7 @@ class Cook(multiprocessing.Process):
         cookTime = self.meals
         time.sleep(cookTime)
 
-        msg = 'Cook {}: End of cooking. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+        msg = 'Cook {}: End of cooking. ({} meals)'.format(self.cookIdx, self.meals)
         print(msg)
 
 

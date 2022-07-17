@@ -1,16 +1,15 @@
 import multiprocessing
 import time
-from time import gmtime, strftime
 
 
 def CookMeals(cookIdx, meals):
-    msg = 'Cook {}: Start to cook. ({})'.format(cookIdx, strftime('%H:%M:%S', gmtime()))
+    msg = 'Cook {}: Start to cook.'.format(cookIdx)
     print(msg)
 
     cookTime = meals
     time.sleep(cookTime)
 
-    msg = 'Cook {}: End of cooking. ({})'.format(cookIdx, strftime('%H:%M:%S', gmtime()))
+    msg = 'Cook {}: End of cooking. ({} meals)'.format(cookIdx, meals)
     print(msg)
 
 
