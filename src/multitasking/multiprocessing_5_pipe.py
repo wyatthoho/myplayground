@@ -31,8 +31,6 @@ class Cook(multiprocessing.Process):
 
 
 if __name__ == '__main__':
-    multiprocessing.freeze_support()
-
     conn1, conn2 = multiprocessing.Pipe()
     cook1 = Cook(cookIdx=1, meals=8, conn1=conn1, conn2=conn2)
     cook2 = Cook(cookIdx=2, meals=2, conn1=conn1, conn2=conn2)

@@ -20,8 +20,6 @@ class Cook(multiprocessing.Process):
 
 
 if __name__ == '__main__':
-    multiprocessing.freeze_support()
-
     cook1 = Cook(cookIdx=1, meals=8)
     cook2 = Cook(cookIdx=2, meals=2)
     cook3 = Cook(cookIdx=3, meals=5)

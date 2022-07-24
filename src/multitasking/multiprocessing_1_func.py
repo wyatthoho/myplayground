@@ -14,8 +14,6 @@ def CookMeals(cookIdx, meals):
 
 
 if __name__ == '__main__':
-    multiprocessing.freeze_support()
-
     cook1 = multiprocessing.Process(target=CookMeals, args=(1,8))
     cook2 = multiprocessing.Process(target=CookMeals, args=(2,2))
     cook3 = multiprocessing.Process(target=CookMeals, args=(3,5))

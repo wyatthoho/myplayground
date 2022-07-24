@@ -23,8 +23,6 @@ class Cook(multiprocessing.Process):
 
 
 if __name__ == '__main__':
-    multiprocessing.freeze_support()
-    
     orders = [8, 2, 5]
 
     my_queue = multiprocessing.Queue()

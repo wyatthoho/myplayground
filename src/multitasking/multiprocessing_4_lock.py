@@ -32,10 +32,10 @@ if __name__ == '__main__':
     for meals in orders:
         my_queue.put(meals)
 
-    lock = multiprocessing.Lock()
+    my_lock = multiprocessing.Lock()
 
-    cook1 = Cook(cookIdx=1, queue=my_queue, lock=lock)
-    cook2 = Cook(cookIdx=2, queue=my_queue, lock=lock)
+    cook1 = Cook(cookIdx=1, queue=my_queue, lock=my_lock)
+    cook2 = Cook(cookIdx=2, queue=my_queue, lock=my_lock)
 
     cook1.start()
     cook2.start()
