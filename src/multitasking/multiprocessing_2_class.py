@@ -1,6 +1,5 @@
 import multiprocessing
 import time
-from time import gmtime, strftime
 
 
 class Cook(multiprocessing.Process):
@@ -10,19 +9,17 @@ class Cook(multiprocessing.Process):
         self.meals = meals
 
     def run(self):
-        msg = 'Cook {}: Start to cook. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+        msg = 'Cook {}: Start to cook.'.format(self.cookIdx)
         print(msg)
 
         cookTime = self.meals
         time.sleep(cookTime)
 
-        msg = 'Cook {}: End of cooking. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+        msg = 'Cook {}: End of cooking. ({} meals)'.format(self.cookIdx, self.meals)
         print(msg)
 
 
 if __name__ == '__main__':
-    multiprocessing.freeze_support()
-
     cook1 = Cook(cookIdx=1, meals=8)
     cook2 = Cook(cookIdx=2, meals=2)
     cook3 = Cook(cookIdx=3, meals=5)

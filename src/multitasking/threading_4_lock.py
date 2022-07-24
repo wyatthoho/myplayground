@@ -1,7 +1,6 @@
 import threading
 import time
 import queue
-from time import gmtime, strftime
 
 '''
 When the state is unlocked, 
@@ -34,13 +33,13 @@ class Cook(threading.Thread):
             meals = self.queue.get()
             self.lock.acquire()
 
-            msg = 'Cook {}: Start to cook. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+            msg = 'Cook {}: Start to cook.'.format(self.cookIdx)
             print(msg)
 
             cookTime = meals
             time.sleep(cookTime)
 
-            msg = 'Cook {}: End of cooking. ({})'.format(self.cookIdx, strftime('%H:%M:%S', gmtime()))
+            msg = 'Cook {}: End of cooking. ({} meals)'.format(self.cookIdx, meals)
             print(msg)
             self.lock.release()
 
@@ -52,10 +51,10 @@ if __name__ == '__main__':
     for meals in orders:
         my_queue.put(meals)
 
-    lock = threading.Lock()
+    my_lock = threading.Lock()
 
-    cook1 = Cook(cookIdx=1, queue=my_queue, lock=lock)
-    cook2 = Cook(cookIdx=2, queue=my_queue, lock=lock)
+    cook1 = Cook(cookIdx=1, queue=my_queue, lock=my_lock)
+    cook2 = Cook(cookIdx=2, queue=my_queue, lock=my_lock)
 
     cook1.start()
     cook2.start()
