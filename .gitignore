@@ -2,3 +2,5 @@ test
 data
 env
 **/__pycache__
+**/*.log
+.vscode
