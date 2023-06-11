@@ -1,5 +1,5 @@
 import logging
-from logging_lib import calculate_length
+from library import calculate_length
 
 logger = logging.getLogger('main')
 logger.setLevel(logging.DEBUG)

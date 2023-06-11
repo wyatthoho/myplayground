@@ -2,7 +2,7 @@ import logging
 import logging.config
 from myconfig import LOGGING_CONFIG
 
-from module_lib import calculate_length
+from library import calculate_length
 
 
 logging.config.dictConfig(LOGGING_CONFIG)
