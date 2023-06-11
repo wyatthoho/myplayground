@@ -10,7 +10,10 @@ file_handler.setLevel(logging.DEBUG)
 stream_handler = logging.StreamHandler()
 stream_handler.setLevel(logging.DEBUG)
 
-formatter = logging.Formatter('%(asctime)s:%(name)s:%(message)s')
+formatter = logging.Formatter(
+    fmt='%(asctime)s,%(msecs)03d [%(levelname)s] %(name)s: %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 file_handler.setFormatter(formatter)
 stream_handler.setFormatter(formatter)
 
