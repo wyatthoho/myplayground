@@ -4,8 +4,7 @@ from library import calculate_length
 logger = logging.getLogger('main')
 logger.setLevel(logging.DEBUG)
 
-filename = __file__.split('.')[0] + '.log'
-file_handler = logging.FileHandler(filename=filename, mode='w')
+file_handler = logging.FileHandler(filename='info.log', mode='w')
 file_handler.setLevel(logging.DEBUG)
 
 stream_handler = logging.StreamHandler()
