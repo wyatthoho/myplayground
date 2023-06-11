@@ -6,7 +6,7 @@ from library import calculate_length
 
 
 logging.config.dictConfig(LOGGING_CONFIG)
-logger = logging.getLogger('main')
+logger = logging.getLogger()
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ from myconfig import LOGGING_CONFIG
 
 
 logging.config.dictConfig(LOGGING_CONFIG)
-logger = logging.getLogger('main.lib')
+logger = logging.getLogger('library')
 
 
 def calculate_length(dx: float, dy: float) -> float:

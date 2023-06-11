@@ -22,12 +22,12 @@ LOGGING_CONFIG = {
         }
     },
     'loggers': {
-        'main': {
+        '': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False
         },
-        'main.lib': {
+        'library': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False
