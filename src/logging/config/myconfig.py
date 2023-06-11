@@ -7,21 +7,28 @@ LOGGING_CONFIG = {
         }
     },
     'handlers': {
-        'default': {
+        'console': {
             'class': 'logging.StreamHandler',
             'level': 'DEBUG',
             'formatter': 'standard',
             'stream': 'ext://sys.stdout'
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'level': 'DEBUG',
+            'formatter': 'standard',
+            'filename': 'info.log',
+            'mode': 'w'
         }
     },
     'loggers': {
         'main': {
-            'handlers': ['default'],
+            'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False
         },
         'main.lib': {
-            'handlers': ['default'],
+            'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False
         }
