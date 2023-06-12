@@ -29,7 +29,7 @@ dx, dy = 3, 4
 if type(dx) != float:
     logging.warning('The type of dx should be float.')
 if type(dy) != float:
-    logging.warning('The type of dx should be float.')
+    logging.warning('The type of dy should be float.')
 length = calculate_length(dx, dy)
 
 
