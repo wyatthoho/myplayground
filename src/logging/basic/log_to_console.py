@@ -1,13 +1,7 @@
-'''Reference: 
-1. https://docs.python.org/3/library/logging.html
-2. https://docs.python.org/3/howto/logging.html
-'''
 import logging
 
 
 logging.basicConfig(
-    filename=f'{__file__}.log',
-    filemode='w',
     level=logging.WARNING,
     format='%(asctime)s,%(msecs)03d [%(levelname)s] %(name)s: %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
