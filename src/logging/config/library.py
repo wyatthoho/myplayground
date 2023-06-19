@@ -1,5 +1,6 @@
 import logging
 import logging.config
+
 from myconfig import LOGGING_CONFIG
 
 
