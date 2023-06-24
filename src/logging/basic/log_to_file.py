@@ -39,7 +39,7 @@ length = calculate_length(dx, dy)
 dx, dy = 3.0, 4.0
 length = calculate_length(dx, dy)
 if length < max(dx, dy):
-    logging.error(f'Calculation error!')
+    logging.error(f'Calculation error!', exc_info=True)
 
 
 # Level 5: critical
@@ -47,4 +47,4 @@ dx, dy = '3', 4
 try:
     length = calculate_length(dx, dy)
 except Exception as e:
-    logging.critical(f'{e}')
+    logging.critical(f'{e}', exc_info=True)
