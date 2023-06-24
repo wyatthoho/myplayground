@@ -1,6 +1,6 @@
 LOGGING_CONFIG = {
     'version': 1,
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
     'formatters': {
         'standard': {
             'format': '%(asctime)s,%(msecs)03d [%(levelname)s] %(name)s: %(message)s',
@@ -24,11 +24,6 @@ LOGGING_CONFIG = {
     },
     'loggers': {
         '': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-            'propagate': False
-        },
-        'library': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False
