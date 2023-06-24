@@ -1,7 +1,7 @@
 import logging
 from library import calculate_length
 
-logger = logging.getLogger('main')
+logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 file_handler = logging.FileHandler(filename='info.log', mode='w')

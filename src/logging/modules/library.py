@@ -1,6 +1,6 @@
 import logging
 
-logger = logging.getLogger('main.lib')
+logger = logging.getLogger(__name__)
 
 
 def calculate_length(dx: float, dy: float) -> float:
