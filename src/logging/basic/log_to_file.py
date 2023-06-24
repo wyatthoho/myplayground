@@ -47,4 +47,4 @@ dx, dy = '3', 4
 try:
     length = calculate_length(dx, dy)
 except Exception as e:
-    logging.critical(f'{e}')
+    logging.critical(f'{e}', exc_info=True)
