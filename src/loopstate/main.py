@@ -4,7 +4,7 @@ import time
 def PrintLoopState(tick, total, step=1):
     cond1 = tick % step == 0
     cond2 = tick == total
-    
+
     if cond1 or cond2:
         action = True
     else:
@@ -22,7 +22,8 @@ def PrintLoopState(tick, total, step=1):
 
 
 if __name__ == '__main__':
-    for itr in range(101):
+    total = 100
+    for itr in range(total):
         time.sleep(0.05)
-        PrintLoopState(tick=itr+1, total=101, step=2)
+        PrintLoopState(tick=itr+1, total=total, step=2)
     print('Done.')
